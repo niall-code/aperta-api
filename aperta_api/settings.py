@@ -32,9 +32,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '7@$&q_sqb#y)ppyi)95wd#m16)0fmp%%yk+=a8z*)e(ie63q1o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '8000-niallcode-apertaapi-ztzye9t93js.ws.codeinstitute-ide.net',
+]
 
 
 # Application definition

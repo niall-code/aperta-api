@@ -43,3 +43,22 @@ I ran `python manage.py startapp <app_name>` seven times, with the app names bei
 I had a Project Inception meeting with my Code Institute mentor, Gareth McGirr. He suggested that a 'reported' attribute in my Post model could be helpful and reminded me of my forgotten intention to have 'reason' and 'explanation' attributes in my Report model. Here are my updated ERDs:
 
 ![updated entity relationship diagrams](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1729280770/aperta-erds-2_p1bx7m.png)
+
+
+### Create Profile model
+
+I added the appropriated code to `profiles/models.py` and `admin.py`, taking example from Moments but adjusting it for the differences I planned in my ERD. I have included a stylistically different default profile picture, an outline-based avatar rather than shading-based. I then created a superuser, running:
+
+> `python manage.py makemigrations`
+>
+> `python manage.py migrate`
+>
+> `python manage.py createsuperuser`
+
+To check that the profile creation functionality was working, I ran `python manage.py runserver`, received an error message screen as expected, added the development workspace URL to ALLOWED_HOSTS like it advises, and was rewarded with the screen shown below.
+
+![host allowed](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1729349063/dev-host-allowed_ygfpml.png)
+
+I then appended `/admin` to the address, logged in with my new superuser account, and saw that a profile had indeed been created and the Cloudinary path for the default profile picture was being successfully interpreted when hovered, as seen below.
+
+![profile creation success](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1729349063/create-profile-success_uaz3bf.png)
