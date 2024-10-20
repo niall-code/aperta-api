@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
     '''
-    Creates an instance of the Profile class.
+    Creates an instance of the Profile model.
 
     While no user-specified value for profile_picture, default image by
     Raphael Silva from Pixabay
