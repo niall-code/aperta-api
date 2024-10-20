@@ -65,6 +65,12 @@ I then appended `/admin` to the address, logged in with my new superuser account
 
 ### Add ProfileSerializer and ProfileList view
 
-I edited the `profiles/views.py` and `aperta_api/urls.py` files and created the `profiles/serializers.py` and `urls.py` files, so that appending `profiles/` to the root address of the back-end application will display a JSON-formatted list of user profiles. Although the upcoming React UI will reduce the usefulness of that, if the stack had to be temporarily decoupled, this could be helpful to the developers.
+I edited the `profiles/views.py` and `aperta_api/urls.py` files and created the `profiles/serializers.py` and `urls.py` files, so that appending `/profiles/` to the root address of the back-end application will display a JSON-formatted list of user profiles. Although the upcoming React UI will reduce the usefulness of that, if the stack had to be temporarily decoupled, this could be helpful to the developers.
 
 ![profile list](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1729434070/profile-list_wsbars.png)
+
+### Add ProfileDetail view
+
+I then further edited the `profiles` app's `views.py` and `urls.py` files, adding an extra class containing methods for handling GET and PUT requests, so that an individual profile will be possible to view or edit. Additionally appending a Profile instance's ID number onto the address, e.g. `/profiles/1/`, now will display a single profile's JSON-formatted details together with a simple form for the uploading of a replacement profile picture.
+
+![profile detail](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1729447518/profile-detail_zk84cw.png)
