@@ -86,3 +86,14 @@ I created a second superuser. As taught in the walkthrough, in `aperta_api`, I t
 ![API user authentication](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1729516945/api-login_sijfie.png)
 
 As I understand it, this authentication functionality on the back end will later be utilised by the React front end, rather than my React app starting from scratch and duplicating these efforts. Additionally and in either case, if the front and back end had to temporarily be decoupled, some direct useability would still remain.
+
+### Enable User Registration and Authentication for the Front End
+
+I pip-installed `dj-rest-auth==2.1.9` and added `'rest_framework.authtoken', 'dj_rest_auth',` to INSTALLED_APPS,<br>
+added `path('dj-rest-auth/', include('dj_rest_auth.urls')),` to `urlpatterns` in `aperta_api/urls.py`,<br>
+then ran `python manage.py migrate`.
+
+I next pip-installed `django-allauth==0.52.0` and added `'django.contrib.sites', 'allauth', 'allauth.account', 'dj_rest_auth.registration',` to INSTALLED_APPS and `SITE_ID = 1` underneath,<br>
+and added `path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),` to `urlpatterns`.
+
+I also pip-installed `djangorestframework-simplejwt==4.7.2`, put the session authentication value in `env.py`, added necessary code to `aperta_api/settings.py` to enable use of JSON Web Tokens in production, and created the `aperta_api/serializers.py` file, before again migrating.
