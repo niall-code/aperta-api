@@ -74,3 +74,15 @@ I edited the `profiles/views.py` and `aperta_api/urls.py` files and created the 
 I then further edited the `profiles` app's `views.py` and `urls.py` files, adding an extra class containing methods for handling GET and PUT requests, so that an individual profile will be possible to view or edit. Additionally appending a Profile instance's ID number onto the address, e.g. `/profiles/1/`, now will display a single profile's JSON-formatted details together with a simple form for the uploading of a replacement profile picture.
 
 ![profile detail](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1729447518/profile-detail_zk84cw.png)
+
+### Add login button
+
+I will move the Registration & Authentication user story to my kanban board's In Progress column. Its acceptance criteria are shown here.
+
+![Registration and Authentication user story](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1729516945/signup-login-ustory_k7on9x.png)
+
+I created a second superuser. As taught in the walkthrough, in `aperta_api`, I then created a `permissions.py` file and added a URL pattern in the `urls.py` file, and in `profiles`, edited the `views.py` and `serializers.py` files. The result is that I can now log in to the API without accessing the Django admin area. Having done so, my username is present indicating authenticated status and an attribute indicating which listed profile is and isn't owned by me is effectively added onto the profiles' data by the serializer, as shown below. Also, the Profile Detail for the second profile, not owned by the current user, appropriately now did not display the form for profile picture alteration.
+
+![API user authentication](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1729516945/api-login_sijfie.png)
+
+As I understand it, this authentication functionality on the back end will later be utilised by the React front end, rather than my React app starting from scratch and duplicating these efforts. Additionally and in either case, if the front and back end had to temporarily be decoupled, some direct useability would still remain.
