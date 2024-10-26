@@ -37,6 +37,9 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '8000-niallcode-apertaapi-ztzye9t93js.ws.codeinstitute-ide.net',
 ]
+CSRF_TRUSTED_ORIGINS = [
+    'https://3000-niallcode-aperta-7y6gdwn1now.ws.codeinstitute-ide.net',
+]
 
 
 # Application definition
@@ -74,8 +77,16 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication'
         if 'DEV' in os.environ
         else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
-    )]
+    )],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    'DATETIME_FORMAT': '%d %b %Y',
 }
+
+if 'DEV' not in os.environ:
+    REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = [
+        'restframework.renderers.JSONRenderer'
+    ]
 
 REST_USE_JWT = True
 JWT_AUTH_COOKIE = 'my-app-auth'

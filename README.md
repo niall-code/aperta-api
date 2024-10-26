@@ -97,3 +97,15 @@ I next pip-installed `django-allauth==0.52.0` and added `'django.contrib.sites',
 and added `path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),` to `urlpatterns`.
 
 I also pip-installed `djangorestframework-simplejwt==4.7.2`, put the session authentication value in `env.py`, added necessary code to `aperta_api/settings.py` to enable use of JSON Web Tokens in production, and created the `aperta_api/serializers.py` file, before again migrating.
+
+### Workflow Transformation
+
+So far, I have been aiming to fluidly move back and forth between making a back-end feature then its front-end user interface. This might be viable when I have more experience, but we were taught Django/React stack by coding the entirety of the back end first and then moving on to the front end, and unravelling what is and isn't necessary on the back end to have in place from square one is challenging. Therefore, to minimise the delaying effect of unnecessary extra problem-solving, I am thinking of now changing approach and as quickly as I can making all aspects of the back end that will be similar to Moments, then returning to where I was. This might result in multiple user stories being active at the same time. Ideally, I would have liked to avoid that, but it may need to be accepted given the tight timeframe of the project and my currently limited experience.
+
+I have booked my next mentor session for about a week from now and hopefully by then can be getting to the point where most of my re-creation of a Moments-like app is in place and I can start giving my attention to those aspects of my project that will set it apart from that, particularly the blocking and reporting features. In theory, if I copy-pasted all of the Moments project, I could begin that almost immediately, but I want to show that I am able to code it again for myself, and also introduce some differences where I can.
+
+## Credit
+
+- My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality, including two new models, and other miscellaneous alterations.
+- My Code Institute mentor, Gareth McGirr, suggested the inclusion of the 'reported' attribute in my Post model.
+- A Code Institute tutor, Sarah, helped while writing my Follow model by clarifying a confusion over apparently ambiguous terms.
