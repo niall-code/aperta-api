@@ -38,7 +38,7 @@ ALLOWED_HOSTS = [
     '8000-niallcode-apertaapi-ztzye9t93js.ws.codeinstitute-ide.net',
 ]
 CSRF_TRUSTED_ORIGINS = [
-    'https://3000-niallcode-aperta-7y6gdwn1now.ws.codeinstitute-ide.net',
+    'https://8000-niallcode-apertaapi-ztzye9t93js.ws.codeinstitute-ide.net',
 ]
 
 
