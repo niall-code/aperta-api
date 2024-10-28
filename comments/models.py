@@ -7,7 +7,7 @@ class Comment(models.Model):
     '''
     Comment model, related to User and Post
     '''
-    commenter = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     commented_on_post = models.ForeignKey(Post, on_delete=models.CASCADE)
     comment_text = models.TextField()
     reported = models.BooleanField(default=False)

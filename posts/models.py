@@ -6,7 +6,7 @@ class Post(models.Model):
     """
     Creates an instance of Post.
     """
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     image = models.ImageField(upload_to='images/', blank=True)
     post_text = models.TextField(blank=True)
