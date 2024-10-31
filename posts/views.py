@@ -19,7 +19,13 @@ class PostList(generics.ListCreateAPIView):
     ).order_by('-made_at')
 
     filter_backends = [
-        filters.OrderingFilter
+        filters.OrderingFilter,
+        filters.SearchFilter,
+    ]
+    search_fields = [
+        'owner__username',
+        'title',
+        'post_text',
     ]
     ordering_fields = [
         'likes_count',
