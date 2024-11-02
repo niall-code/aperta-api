@@ -18,7 +18,8 @@ SECRET_KEY = '7@$&q_sqb#y)ppyi)95wd#m16)0fmp%%yk+=a8z*)e(ie63q1o'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '8000-niallcode-apertaapi-ztzye9t93js.ws.codeinstitute-ide.net',
+    # '8000-niallcode-apertaapi-ztzye9t93js.ws.codeinstitute-ide.net',
+    '.localhost',
 ]
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-niallcode-apertaapi-ztzye9t93js.ws.codeinstitute-ide.net',
@@ -50,6 +51,15 @@ INSTALLED_APPS = [
     'blocks',
     'reports',
 ]
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SITE_ID = 1
 
@@ -106,14 +116,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'aperta_api.wsgi.application'
-
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
 
 AUTH_PASSWORD_VALIDATORS = [

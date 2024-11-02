@@ -105,6 +105,22 @@ So far, I have been aiming to fluidly move back and forth between making a back-
 I have booked my next mentor session for about a week from now and hopefully by then can be getting to the point where most of my re-creation of a Moments-like app is in place and I can start giving my attention to those aspects of my project that will set it apart from that, particularly the blocking and reporting features. In theory, if I copy-pasted all of the Moments project, I could begin that almost immediately, but I want to show that I am able to code it again for myself, and also introduce some differences where I can.
 
 
+### Catching up aperta-api with Moments' drf-api
+
+I rapidly coded the aspects of my API which are similar to the functionality already provided in Moments. The specifics will have been recorded within my commit history, but some occurrences worthy of explicit mention here are:
+
+- In my ERDs, I had given each model a more descriptive first attribute than simply 'owner'. However, I realised that this would significantly impact the efficiency of code in my permissions file. Therefore, I changed all such attributes back to 'owner' and re-migrated the models.
+
+- I refactored the views files of my posts and profiles apps to use generics. If I was a little more experienced than at present, I likely would have thought to code it that way right from the start. Code Institute's Moments walkthrough had us code the equivalent apps the longhand way and then refactor them and, because I was treating my drf-api GitHub repository as notes on how to correctly code a Django REST Framework API, I accidentally first mirrored the inefficient version that we were shown initially.
+
+- I added 'post_text' to search_fields in the PostList view. Either the Moments walkthrough did not include an equivalent or I had missed it out, but for Aperta, it will be useful functionality to be able to search for any posts that contain certain words, essentially allowing thematic searching.
+
+![recent git commit history](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1730566914/rapid-fire-commits_dvfpjr.png)
+
+### Mentor Meeting and Agile Methodology
+
+
+
 ### Fix Dependency Version Incompatibilities
 
 I investigatively ran `python manage.py makemigrations --dry-run`.
@@ -146,6 +162,14 @@ and finally, since the dependency incompatibility warnings seemed silenced, `pip
 In a line of my settings file, `'rest_framework.renderers.JSONRenderer'`, I introduced the underscore. During my Moments walkthrough, I had experienced a ream of error messages that turned out to be caused by the same lack of underscore. The underscore is missing in the 'Adding Pagination' section of Code Institute's "DRF Cheat Sheet - Deployment" Google Doc and, due to currently being relatively inexperienced, during Moments and now Aperta, I failed to recognise it as a typo and trusted that its absence was correct. I have added an extra annotation to my heavily-annotated hard copy, which will hopefully prevent a third occurrence of this.
 
 ![annotated notes](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1730564580/annotated-printout_kbvkua.jpg)
+
+### Remove related_name from liked_post in Like model
+
+I tried to run server and received exceptions indicating that the lack of an 's' after 'like' in my querysets, in my PostList and PostDetail views, was problematic. I noticed that there was a `related_name='likes'` in my Like model. I considered whether that needed to be there and, since there are no direct equivalents in my other models (the Follow model is different, because it links to two User instances), I decided that the simplest solution was to remove it, and that appears to have silenced the exceptions.
+
+### Add DEFAULT_AUTO_FIELD in settings.py
+
+When trying to run server and also when trying to dry-run making migrations, I received warnings suggesting that DEFAULT_AUTO_FIELD needed to be configured, and I have done so in settings, silencing the warnings. I then made migrations and migrated.
 
 ## Credit
 
