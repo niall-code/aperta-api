@@ -141,10 +141,18 @@ I ran `pip uninstall django django-cors-headers djangorestframework`, then
 
 and finally, since the dependency incompatibility warnings seemed silenced, `pip freeze > requirements.txt`.
 
+### Fix Absent Underscore in settings.py
+
+In a line of my settings file, `'rest_framework.renderers.JSONRenderer'`, I introduced the underscore. During my Moments walkthrough, I had experienced a ream of error messages that turned out to be caused by the same lack of underscore. The underscore is missing in the 'Adding Pagination' section of Code Institute's "DRF Cheat Sheet - Deployment" Google Doc and, due to currently being relatively inexperienced, during Moments and now Aperta, I failed to recognise it as a typo and trusted that its absence was correct. I have added an extra annotation to my heavily-annotated hard copy, which will hopefully prevent a third occurrence of this.
+
+![annotated notes](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1730564580/annotated-printout_kbvkua.jpg)
+
 ## Credit
 
 - My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality, including two new models, and other miscellaneous alterations.
 
-- My Code Institute mentor, Gareth McGirr, suggested the inclusion of the 'reported' attribute in my Post model.
+- My Code Institute mentor, Gareth McGirr, suggested the convenient inclusion of the 'reported' attribute in my Post model, and provided general support with clarifying my ideas and priorities for the project.
 
 - A Code Institute tutor, Sarah, helped while writing my Follow model by clarifying a confusion over apparently ambiguous terms.
+
+- Another Code Institute tutor, Thomas, provided some guidance regarding what dependency version numbers would be compatible.
