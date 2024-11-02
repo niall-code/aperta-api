@@ -104,9 +104,42 @@ So far, I have been aiming to fluidly move back and forth between making a back-
 
 I have booked my next mentor session for about a week from now and hopefully by then can be getting to the point where most of my re-creation of a Moments-like app is in place and I can start giving my attention to those aspects of my project that will set it apart from that, particularly the blocking and reporting features. In theory, if I copy-pasted all of the Moments project, I could begin that almost immediately, but I want to show that I am able to code it again for myself, and also introduce some differences where I can.
 
-### Posts
 
+### Fix Dependency Version Incompatibilities
 
+I investigatively ran `python manage.py makemigrations --dry-run`.
+
+The terminal told me:
+
+> ModuleNotFoundError: No module named 'dj_database_url'
+
+I pip-installed dependencies:
+
+`pip install dj_database_url==0.5.0 psycopg2 gunicorn django-cors-headers`
+
+The terminal showed me Django getting upgraded automatically:
+
+> Downloading Django-5.1.2-py3-none-any.whl (8.3 MB)
+> 
+> ━━━━━━━━━━━━━━━━━━━━ 8.3/8.3 MB 98.9 MB/s eta 0:00:00
+
+During the Moments walkthrough, I experienced strange difficulties that were largely resolved when, on the advice of a Code Institute tutor, Thomas, I downgraded Django to version 3. Therefore, I did not want this upgrade.
+
+I ran `pip uninstall django`, then `pip install django==3`.
+
+The terminal told me:
+
+> django-cors-headers 4.6.0 requires django>=4.2, but you have django 3.0 which is incompatible.
+
+I ran `pip uninstall django-cors-headers`, then `pip install django-cors-headers==4.3.1`.
+
+Django was again automatically, unwantedly upgraded. I looked at what other dependency alterations had been made before, during that past tutoring session.
+
+I ran `pip uninstall django django-cors-headers djangorestframework`, then
+
+`pip install django==3.2.23 django-cors-headers==4.3.1 djangorestframework==3.14.0`,
+
+and finally, since the dependency incompatibility warnings seemed silenced, `pip freeze > requirements.txt`.
 
 ## Credit
 
