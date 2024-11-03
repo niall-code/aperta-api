@@ -171,6 +171,28 @@ I tried to run server and received exceptions indicating that the lack of an 's'
 
 When trying to run server and also when trying to dry-run making migrations, I received warnings suggesting that DEFAULT_AUTO_FIELD needed to be configured, and I have done so in settings, silencing the warnings. I then made migrations and migrated.
 
+### Prepare settings for deployment
+
+I examined my commits from my [drf-api GitHub repo](https://github.com/niall-code/drf-api/commits/main/), from the Moments walkthrough project, and looked carefully at all the changing and rechanging I tried before, making sure that I imitated only the final version of my settings.py file, which had appeared to be working correctly. I made some notes in relation to it. Guided by a combination of those notes and my heavily-annotated printout of Code Institute's "DRF Cheat Sheet - Deployment", I began to add to and adjust my settings and env files appropriately.
+
+I altered SECRET_KEY, DEBUG, ALLOWED_HOSTS, CSRF_TRUSTED_ORIGINS, INSTALLED_APPS, DATABASES, and MIDDLEWARE, and added JWT_AUTH_SAMESITE, CORS_ALLOWED_ORIGINS, and CORS_ALLOW_CREDENTIALS.
+
+I generated a new secret key by temporarily creating a `key_generator.py` file, at the same level as `manage.py`, giving it the following code (as read in this article: https://www.makeuseof.com/django-secret-key-generate-new/),
+
+> from django.core.management.utils import get_random_secret_key
+> 
+> secret_key = get_random_secret_key()
+> 
+> print(secret_key)
+
+running `python key_generator.py`, and copying the printed string to my git-ignored `env.py` file.
+
+In drf-api, "comment out sqlite database setting" had been done at the suggestion of a Code Institute tutor, to ensure that I was migrating to the PostgreSQL database. Therefore, at this point in my project, I have similarly replaced DATABASES value, rather than making it conditional.
+
+I then ran `python manage.py migrate` to migrate to the newly-connected PostgreSQL database.
+
+Finally, I ran `python manage.py createsuperuser`, to create a new superuser for that database.
+
 ## Credit
 
 - My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality, including two new models, and other miscellaneous alterations.

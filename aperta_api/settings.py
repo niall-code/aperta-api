@@ -13,16 +13,18 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-SECRET_KEY = '7@$&q_sqb#y)ppyi)95wd#m16)0fmp%%yk+=a8z*)e(ie63q1o'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
-DEBUG = True
+DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = [
-    # '8000-niallcode-apertaapi-ztzye9t93js.ws.codeinstitute-ide.net',
-    '.localhost',
+    '8000-niallcode-apertaapi-ztzye9t93js.ws.codeinstitute-ide.net',
+    os.environ.get('ALLOWED_HOST'),
 ]
+
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-niallcode-apertaapi-ztzye9t93js.ws.codeinstitute-ide.net',
+    'https://3000-niallcode-aperta-7y6gdwn1now.ws.codeinstitute-ide.net',
 ]
 
 
@@ -42,6 +44,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'dj_rest_auth.registration',
+    'corsheaders',
 
     'profiles',
     'posts',
@@ -53,10 +56,9 @@ INSTALLED_APPS = [
 ]
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': dj_database_url.parse(
+        os.environ.get("DATABASE_URL")
+    )
 }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -83,11 +85,14 @@ REST_USE_JWT = True
 JWT_AUTH_COOKIE = 'my-app-auth'
 JWT_AUTH_SECURE = True
 JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
+JWT_AUTH_SAMESITE = 'None'
+
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'aperta_api.serializers.CurrentUserSerializer'
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -96,6 +101,14 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+if 'CLIENT_ORIGIN' in os.environ:
+    CORS_ALLOWED_ORIGINS = [
+        os.environ.get('CLIENT_ORIGIN'),
+        os.environ.get('CLIENT_ORIGIN_DEV'),
+    ]
+
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'aperta_api.urls'
 
