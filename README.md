@@ -119,7 +119,10 @@ I rapidly coded the aspects of my API which are similar to the functionality alr
 
 ### Mentor Meeting and Agile Methodology
 
+I had a mid-project meeting with my Code Institute mentor, Gareth McGirr. He clarified the importance of grouping my user stories into milestones. Informally, I had done so naturally, since I find that my user stories for each milestone/category are next to each other in my kanban board. However, I have now made it official, with one of four milestone-titling keywords being present like a label on each user story.
 
+![milestones](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1730476903/milestones_si7l6w.png)
+![milestone grouping of user stories](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1730476902/milestone-signposts_m4ys5o.png)
 
 ### Fix Dependency Version Incompatibilities
 
@@ -192,6 +195,14 @@ In drf-api, "comment out sqlite database setting" had been done at the suggestio
 I then ran `python manage.py migrate` to migrate to the newly-connected PostgreSQL database.
 
 Finally, I ran `python manage.py createsuperuser`, to create a new superuser for that database.
+
+### Deploy to Heroku
+
+From my Heroku dashboard, I clicked _New_, then _Create new app_, and then gave it an app name, **aperta-api**, selected _Europe_ for region, and clicked _Create app_. Then, I clicked _GitHub_, searched for my repo (also 'aperta-api'), and clicked _Connect_, then _Enable Automatic Deploys_.
+
+I navigated to the "Settings" tab, clicked _Reveal Config Vars_, and added key-value pairs mirroring my env file, including DATABASE_URL, SECRET_KEY, and CLOUDINARY_URL, but with DISABLE_COLLECTSTATIC instead of DEV, plus ALLOWED_HOST (assigned the value of this new app's URL, gained by clicking _Open app_, minus the `https://` on the front) and CLIENT_ORIGIN_DEV (assigned the development URL of my front-end React app). Once the React app has also been deployed to Heroku, I can also add CLIENT_ORIGIN, with the production URL.
+
+My environment variables configured, I clicked _Hide Config Vars_, navigated back to the "Deploy" tab, and clicked _Deploy Branch_.
 
 ## Credit
 
