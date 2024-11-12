@@ -204,6 +204,60 @@ I navigated to the "Settings" tab, clicked _Reveal Config Vars_, and added key-v
 
 My environment variables configured, I clicked _Hide Config Vars_, navigated back to the "Deploy" tab, and clicked _Deploy Branch_.
 
+### Add is_staff field to CurrentUserSerializer
+
+I added Django's `is_staff` property as a field of my `CurrentUserSerializer`. This meant that in my React app, I could add a `currentUser?.is_staff` condition to a link in the navbar.
+
+### Amend Heroku config vars of deployed API
+
+In my React app, I was unable to sign up. Error messages in the console indicated that it was a CORS-related issue.
+
+![access permission error messages](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731415530/cors-policy-issue_jegruw.png)
+
+Here in my API, my settings file includes:
+
+>     if 'CLIENT_ORIGIN' in os.environ:
+>         CORS_ALLOWED_ORIGINS = [
+>             os.environ.get('CLIENT_ORIGIN'),
+>             os.environ.get('CLIENT_ORIGIN_DEV'),
+>         ]
+
+I checked the config vars of my deployed API and realised that the absence of a CLIENT_ORIGIN key meant that the present CLIENT_ORIGIN_DEV key also could not be read. I therefore added one, provisionally also with the React app's development server's URL as the value, but shall alter it once there is a production URL available.
+
+In my React app, I saw that this cleared away the critical error, allowing my signup to complete and redirect me to the login page.
+
+![access errors resolved](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731415530/cors-policy-resolved_divm4t.png)
+
+I have written that in _this_ readme because the change was in the Heroku app I had deployed from here.
+
+### Create and migrate Block and Report models
+
+I wrote Block and Report models and migrated them to my database.
+
+In my previous milestone project, The Barn Owl Inn, the repo for which is also public on my GitHub, I had included a multiple choice in a Django model using IntegerField.
+
+>     course = models.IntegerField(
+>         choices=[(1, "Starters"), (2, "Main Course"), (3, "Desserts")],
+>         blank=False
+>     )
+
+Therefore, for my Report model's "reason" field, I will try following that pattern - using IntegerField, rather than CharField like my ERD initially suggested.
+
+>     reason = models.IntegerField(
+>         choices=[
+>             (1, "Graphic violence"),
+>             (2, "Explicit sexual content"),
+>             (3, "Sexualization of minors"),
+>             (3, "Inciting hatred"),
+>             (4, "Encouraging suicide or self-harm"),
+>             (5, "Attempting to defraud"),
+>             (6, "Advertising illegal products"),
+>             (7, "Blatant copyright infringement"),
+>             (8, "Other serious reason (please describe in 'explanation')")
+>         ],
+>         blank=False
+>     )
+
 ## Credit
 
 - My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality, including two new models, and other miscellaneous alterations.
