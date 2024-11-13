@@ -258,6 +258,10 @@ Therefore, for my Report model's "reason" field, I will try following that patte
 >         blank=False
 >     )
 
+### Add a related_name to liked_post in the Like model
+
+In my React app, I was having issues with its 'Liked' page. As part of my efforts to solve it, I here added `related_name='likes'` into the `liked_post` field of my Like model, connectedly added two letter 's' within `likes/views.py`, and re-migrated.
+
 ## Credit
 
 - My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality, including two new models, and other miscellaneous alterations.
