@@ -1,5 +1,6 @@
 from django.db.models import Count
 from rest_framework import generics, permissions, filters
+from django_filters.rest_framework import DjangoFilterBackend
 
 from aperta_api.permissions import IsOwnerOrReadOnly
 from .models import Post
@@ -21,6 +22,12 @@ class PostList(generics.ListCreateAPIView):
     filter_backends = [
         filters.OrderingFilter,
         filters.SearchFilter,
+        DjangoFilterBackend,
+    ]
+    filterset_fields = [
+        'owner__follows__owner__profile',
+        'likes__owner__profile',
+        'owner__profile',
     ]
     search_fields = [
         'owner__username',

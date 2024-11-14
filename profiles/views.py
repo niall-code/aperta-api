@@ -1,5 +1,6 @@
 from django.db.models import Count
 from rest_framework import generics, filters
+from django_filters.rest_framework import DjangoFilterBackend
 
 from aperta_api.permissions import IsOwnerOrReadOnly
 from .models import Profile
@@ -19,7 +20,12 @@ class ProfileList(generics.ListAPIView):
     serializer_class = ProfileSerializer
 
     filter_backends = [
-        filters.OrderingFilter
+        filters.OrderingFilter,
+        DjangoFilterBackend,
+    ]
+    filterset_fields = [
+        'owner__follows__followers__profile',
+        'owner__followers__owner__profile',
     ]
     ordering_fields = [
         'posts_count',
