@@ -4,4 +4,5 @@ from reports import views
 
 urlpatterns = [
     # path('suspicious/', views.SuspiciousList.as_view()),
+    # path('suspicious/<int:pk>/', views.SuspiciousDetail.as_view()),
 ]
