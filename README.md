@@ -272,23 +272,11 @@ In consultation with Code Institute tutor Holly, while trying to fix my front en
 
 ![making a migration](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731677613/re-migrate_report_qmmcuc.png)
 
-
-### Back end of my reporting & moderation functionalities
-
-On 15 Nov., I did much thinking about how to make my reporting feature workable. My ideas are outlined in the annotated notes in this image:
-
-![planning reporting feature](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731761748/report_ideas_zi1lar.png)
-
-I accordingly altered my Report and Post models:
-
-![model migrations](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731762949/models_redesign_ymo0l1.png)
-
-
 ## Credit
 
 - My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality, including two new models (one utilised in first release), and other miscellaneous alterations.
 
-- My Code Institute mentor, Gareth McGirr, provided general support with clarifying my ideas and priorities for the project.
+- My Code Institute mentor, Gareth McGirr, suggested the convenient inclusion of the 'reported' attribute in my Post model, and provided general support with clarifying my ideas and priorities for the project.
 
 - A Code Institute tutor, Sarah, helped while writing my Follow model by clarifying a confusion over apparently ambiguous terms.
 
