@@ -274,10 +274,10 @@ In consultation with Code Institute tutor Holly, while trying to fix my front en
 
 ## Credit
 
-- My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality, including two new models (one utilised in first release), and other miscellaneous alterations.
+- My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality, including two new models, and other miscellaneous alterations.
 
 - My Code Institute mentor, Gareth McGirr, suggested the convenient inclusion of the 'reported' attribute in my Post model, and provided general support with clarifying my ideas and priorities for the project.
 
 - A Code Institute tutor, Sarah, helped while writing my Follow model by clarifying a confusion over apparently ambiguous terms.
 
-- Another Code Institute tutor, Thomas, had previously provided some guidance regarding what dependency version numbers would be compatible.
+- Another Code Institute tutor, Thomas, provided some guidance regarding what dependency version numbers would be compatible.
