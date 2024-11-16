@@ -10,8 +10,6 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     image = models.ImageField(upload_to='images/', blank=True)
     post_text = models.TextField(blank=True)
-    reported = models.BooleanField(default=False)
-    green_listed = models.BooleanField(default=False)
     made_at = models.DateTimeField(auto_now_add=True)
     changed_at = models.DateTimeField(auto_now=True)
 

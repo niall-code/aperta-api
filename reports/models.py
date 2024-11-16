@@ -5,14 +5,10 @@ from posts.models import Post
 
 class Report(models.Model):
     """
-    Report model, related to 'owner' and 'reported_post'
-    or 'reported_comment'.
+    Report model
     """
-    owner = models.ForeignKey(
-        User, on_delete=models.CASCADE
-    )
     reported_post = models.ForeignKey(
-        Post, on_delete=models.CASCADE
+        Post, related_name='reported', on_delete=models.CASCADE
     )
     reason = models.IntegerField(
         choices=[
@@ -32,8 +28,8 @@ class Report(models.Model):
     made_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ['-made_at']
-        unique_together = ['owner', 'reported_post']
+        # Chronological order, to address oldest most urgently
+        ordering = ['made_at']
 
     def __str__(self):
-        return f'{self.owner} reports suspicious content'
+        return f"'{self.reported_post.title}' was reported"
