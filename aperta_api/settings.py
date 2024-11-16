@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     'follows',
     'blocks',
     'reports',
-    'approvals',
 ]
 
 DATABASES = {
