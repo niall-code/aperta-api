@@ -283,6 +283,7 @@ I accordingly altered my Report and Post models:
 
 ![model migrations](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731762949/models_redesign_ymo0l1.png)
 
+I ran `python manage.py startapp approvals` and added 'approvals' to my INSTALLED_APPS. I wrote, admin-registered, and migrated an Approval model.
 
 ## Credit
 
