@@ -262,16 +262,6 @@ Therefore, for my Report model's "reason" field, I will try following that patte
 
 In my React app, I was having issues with its 'Liked' page. As part of my efforts to solve it, I here added `related_name='likes'` into the `liked_post` field of my Like model, connectedly added two letter 's' within `likes/views.py`, and re-migrated.
 
-### Addressing issues regarding front end's 'Liked' and 'Followed' pages
-
-With the commit "add filterset_fields to views files", I enabled my React app's 'Liked' page to display posts that the logged-in user had liked, as mentioned also in the other readme.
-
-In consultation with Code Institute tutor Holly, while trying to fix my front end's 'Followed' page, I made three trial-and-error commits also relating to `filterset_fields`, also on 14 Nov. '24. In combination with a small adjustment to the React app's `App.js` file, the 'Followed' page was indeed eventually fixed.
-
-### Re-migrate Report model
-
-![making a migration](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731677613/re-migrate_report_qmmcuc.png)
-
 ## Credit
 
 - My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality, including two new models, and other miscellaneous alterations.

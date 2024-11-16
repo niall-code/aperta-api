@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from posts.models import Post
+from comments.models import Comment
 
 
 class Report(models.Model):
@@ -12,7 +13,10 @@ class Report(models.Model):
         User, on_delete=models.CASCADE
     )
     reported_post = models.ForeignKey(
-        Post, on_delete=models.CASCADE
+        Post, on_delete=models.CASCADE, blank=True
+    )
+    reported_comment = models.ForeignKey(
+        Comment, on_delete=models.CASCADE, blank=True
     )
     reason = models.IntegerField(
         choices=[
