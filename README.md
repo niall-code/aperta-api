@@ -308,6 +308,10 @@ My permissions file was such that only the owner of an object could edit and del
 
 I created ReportSerializer, SuspiciousList, and SuspiciousDetail, and added URL patterns.
 
+### Start approvals app
+
+I ran `python manage.py startapp approvals` and added 'approvals' to my INSTALLED_APPS. I wrote, admin-registered, and migrated an Approval model.
+
 ## Credit
 
 - My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality, including two new models, and other miscellaneous alterations.

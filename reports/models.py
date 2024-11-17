@@ -1,13 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 from posts.models import Post
-from comments.models import Comment
+# from comments.models import Comment
 
 
 class Report(models.Model):
     """
     Report model, related to 'owner' and 'reported_post'
-    or 'reported_comment'.
     """
     owner = models.ForeignKey(
         User, on_delete=models.CASCADE
@@ -37,4 +36,4 @@ class Report(models.Model):
         unique_together = ['owner', 'reported_post']
 
     def __str__(self):
-        return f'{self.owner} reports suspicious content'
+        return f'{self.reported_post.title}'
