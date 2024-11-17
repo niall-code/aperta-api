@@ -198,7 +198,7 @@ Finally, I ran `python manage.py createsuperuser`, to create a new superuser for
 
 ### Deploy to Heroku
 
-From my Heroku dashboard, I clicked _New_, then _Create new app_, and then gave it an app name, **aperta-api**, selected _Europe_ for region, and clicked _Create app_. Then, I clicked _GitHub_, searched for my repo (also 'aperta-api'), and clicked _Connect_, then _Enable Automatic Deploys_.
+From my Heroku dashboard, I clicked _New_, then _Create new app_, and then gave it an app name, **aperta-api**, selected _Europe_ for region, and clicked _Create app_. Then, I clicked _GitHub_, searched for my repo (also 'aperta-api'), and clicked _Connect_.
 
 I navigated to the "Settings" tab, clicked _Reveal Config Vars_, and added key-value pairs mirroring my env file, including DATABASE_URL, SECRET_KEY, and CLOUDINARY_URL, but with DISABLE_COLLECTSTATIC instead of DEV, plus ALLOWED_HOST (assigned the value of this new app's URL, gained by clicking _Open app_, minus the `https://` on the front) and CLIENT_ORIGIN_DEV (assigned the development URL of my front-end React app). Once the React app has also been deployed to Heroku, I can also add CLIENT_ORIGIN, with the production URL.
 
@@ -303,6 +303,10 @@ For the same reasoning, this time I won't risk maybe messing up my database by a
 My permissions file was such that only the owner of an object could edit and delete it. To ensure that moderators would be able to delete posts and reports anyway, I added an extra if statement. I checked that this worked: From my React app, I signed up as a new user and created a post. From my API, I logged in as a superuser, navigated to the post detail view, saw that there was no delete button, then uncommented my proposed if statement, refreshed, and the delete button appeared, as seen below.
 
 ![staff delete permission granted](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731855541/delete_button_rzkzhy.png)
+
+### Add report serializer and views
+
+I created ReportSerializer, SuspiciousList, and SuspiciousDetail, and added URL patterns.
 
 ## Credit
 
