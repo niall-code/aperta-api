@@ -298,6 +298,11 @@ In my reverted commits, I removed the owner field of Report, deeming it unnecess
 
 For the same reasoning, this time I won't risk maybe messing up my database by again removing the 'reported' and 'green_listed' Boolean fields from my Post model. To that end, this time I've named the reported_post field's related_name attribute 'reports' instead of 'reported', avoiding the message regarding a "clash" that previously prompted my possibly hazardous Post model alterations.
 
+### Add delete permission for is_staff
+
+My permissions file was such that only the owner of an object could edit and delete it. To ensure that moderators would be able to delete posts and reports anyway, I added an extra if statement. I checked that this worked: From my React app, I signed up as a new user and created a post. From my API, I logged in as a superuser, navigated to the post detail view, saw that there was no delete button, then uncommented my proposed if statement, refreshed, and the delete button appeared, as seen below.
+
+![staff delete permission granted](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731855541/delete_button_rzkzhy.png)
 
 ## Credit
 
