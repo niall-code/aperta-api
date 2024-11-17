@@ -262,12 +262,51 @@ Therefore, for my Report model's "reason" field, I will try following that patte
 
 In my React app, I was having issues with its 'Liked' page. As part of my efforts to solve it, I here added `related_name='likes'` into the `liked_post` field of my Like model, connectedly added two letter 's' within `likes/views.py`, and re-migrated.
 
+### Addressing issues regarding front end's 'Liked' and 'Followed' pages
+
+With the commit "add filterset_fields to views files", I enabled my React app's 'Liked' page to display posts that the logged-in user had liked, as mentioned also in the other readme.
+
+In consultation with Code Institute tutor Holly, while trying to fix my front end's 'Followed' page, I made three trial-and-error commits also relating to `filterset_fields`, also on 14 Nov. '24. In combination with a small adjustment to the React app's `App.js` file, the 'Followed' page was indeed eventually fixed.
+
+### Back end of my reporting & moderation functionalities
+
+On 15 Nov., I did much thinking about how to make my reporting feature workable. My ideas are outlined in the annotated notes in this image:
+
+![planning reporting feature](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731761748/report_ideas_zi1lar.png)
+
+
+### Git Reverts
+
+I did several commits relating to my content moderation feature, but a problem was discovered relating to posts in my front end's "public feed" post list not being viewable when you go into the post detail. The long and short of it is that I decided to do several `git revert` commands to get back to what I believed to be the last stable version. Unfortunately, problems persisted even then. I consulted a Code Institute tutor, Roman. We found that my database had seemingly been corrupted and migrated everything to a fresh database. The original post detail issue again still remained. Here, in `comments/views.py`, we changed
+
+``filterset_fields = ['post']`` to ``filterset_fields = ['commented_on_post']``,
+
+and on the front end, in `PostPage.js`, we changed
+
+``axiosReq.get(`/comments/?post=${id}`)`` to ``axiosReq.get(`/comments/?commented_on_post=${id}`)``. This seemed to resolve the matter.
+
+I'm now beginning to approximately repeat my reverted work of the past couple days, but with some differences and with a little more caution, though caution must still be balanced against time pressure.
+
+
+### Remove reported_comment field from Report model
+
+I removed the currently unnecessary reported_comment field from my Report model, added a related_name of 'reports' to the reported_post field, and removed `blank=True` from that field, because that was to allow a user to complete either one of the two fields and ignore the other, but now reported_post must have a value.
+
+![remigrating my Report model](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731853138/alter_report_fields_l7nsdl.png)
+
+In my reverted commits, I removed the owner field of Report, deeming it unnecessary, but I don't know for sure that repeating that step won't have ramifications, such as conceivably interfering with permissions checking, and I am at this time somewhat anxious about further crises developing. It is surely better to leave in unused code than risk compromising my entire project again two days before the deadline.
+
+For the same reasoning, this time I won't risk maybe messing up my database by again removing the 'reported' and 'green_listed' Boolean fields from my Post model. To that end, this time I've named the reported_post field's related_name attribute 'reports' instead of 'reported', avoiding the message regarding a "clash" that previously prompted my possibly hazardous Post model alterations.
+
+
 ## Credit
 
 - My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality, including two new models, and other miscellaneous alterations.
 
-- My Code Institute mentor, Gareth McGirr, suggested the convenient inclusion of the 'reported' attribute in my Post model, and provided general support with clarifying my ideas and priorities for the project.
+- My Code Institute mentor, Gareth McGirr, provided general support with clarifying my ideas and priorities for the project.
 
 - A Code Institute tutor, Sarah, helped while writing my Follow model by clarifying a confusion over apparently ambiguous terms.
 
 - Another Code Institute tutor, Thomas, provided some guidance regarding what dependency version numbers would be compatible.
+
+- And another Code Institute tutor, Roman, helped to fix my database migrations situation and post detail viewing, as described above under the heading "Git Reverts".

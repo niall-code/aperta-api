@@ -13,10 +13,7 @@ class Report(models.Model):
         User, on_delete=models.CASCADE
     )
     reported_post = models.ForeignKey(
-        Post, on_delete=models.CASCADE, blank=True
-    )
-    reported_comment = models.ForeignKey(
-        Comment, on_delete=models.CASCADE, blank=True
+        Post, related_name='reports', on_delete=models.CASCADE
     )
     reason = models.IntegerField(
         choices=[
