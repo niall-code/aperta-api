@@ -308,9 +308,15 @@ My permissions file was such that only the owner of an object could edit and del
 
 I created ReportSerializer, SuspiciousList, and SuspiciousDetail, and added URL patterns.
 
+![back end report creation form](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731860013/api_reporting_form_tcddye.png)
+
 ### Start approvals app
 
 I ran `python manage.py startapp approvals` and added 'approvals' to my INSTALLED_APPS. I wrote, admin-registered, and migrated an Approval model.
+
+### Add approval serializer and views
+
+I created ApprovalSerializer, ApprovalList, and Approval Detail, and added URL patterns.
 
 ## Credit
 

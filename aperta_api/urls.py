@@ -17,5 +17,6 @@ urlpatterns = [
     path('', include('follows.urls')),
     path('', include('blocks.urls')),
     path('', include('reports.urls')),
+    path('', include('approvals.urls')),
     path('', root_route),
 ]
