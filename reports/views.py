@@ -1,7 +1,8 @@
 from rest_framework import generics, permissions
 
-from .models import Report
-from .serializers import ReportSerializer
+from reports.models import Report
+from posts.models import Post
+from reports.serializers import ReportSerializer
 
 
 class SuspiciousList(generics.ListCreateAPIView):
@@ -11,6 +12,14 @@ class SuspiciousList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = ReportSerializer
     queryset = Report.objects.all()
+
+    def perform_create(self, serializer):
+        post_id = self.kwargs['post_id']
+        reported_post = Post.objects.get(id=post_id)
+        serializer.save(
+            owner=self.request.user,
+            reported_post=reported_post
+        )
 
 
 class SuspiciousDetail(generics.RetrieveDestroyAPIView):
