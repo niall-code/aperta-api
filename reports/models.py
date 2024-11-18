@@ -11,9 +11,6 @@ class Report(models.Model):
     owner = models.ForeignKey(
         User, on_delete=models.CASCADE
     )
-    reported_post = models.ForeignKey(
-        Post, related_name='reports', on_delete=models.CASCADE
-    )
 
     post_id = models.IntegerField(null=True)
     post_title = models.CharField(max_length=200, null=True)
@@ -39,7 +36,7 @@ class Report(models.Model):
 
     class Meta:
         ordering = ['made_at']
-        unique_together = ['owner', 'reported_post']
+        unique_together = ['owner', 'post_id']
 
     def __str__(self):
-        return f'{self.reported_post.title}'
+        return f'{self.post_title}'
