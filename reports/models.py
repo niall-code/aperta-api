@@ -8,14 +8,10 @@ class Report(models.Model):
     """
     Report model, related to 'owner' and 'reported_post'
     """
-    owner = models.ForeignKey(
-        User, on_delete=models.CASCADE
-    )
-
     post_id = models.IntegerField(null=True)
     post_title = models.CharField(max_length=200, null=True)
-    post_text = models.TextField(null=True)
-    post_image = models.URLField(null=True)
+    post_text = models.TextField(blank=True, null=True)
+    post_image = models.CharField(max_length=500, blank=True, null=True)
 
     reason = models.IntegerField(
         choices=[
@@ -36,7 +32,6 @@ class Report(models.Model):
 
     class Meta:
         ordering = ['made_at']
-        unique_together = ['owner', 'post_id']
 
     def __str__(self):
         return f'{self.post_title}'
