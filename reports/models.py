@@ -19,12 +19,12 @@ class Report(models.Model):
             (1, "Graphic violence"),
             (2, "Explicit sexual content"),
             (3, "Sexualization of minors"),
-            (3, "Inciting hatred"),
-            (4, "Encouraging suicide or self-harm"),
-            (5, "Attempting to defraud"),
-            (6, "Advertising illegal products"),
-            (7, "Blatant copyright infringement"),
-            (8, "Other serious reason (please describe in 'explanation')")
+            (4, "Inciting hatred"),
+            (5, "Encouraging suicide or self-harm"),
+            (6, "Attempting to defraud"),
+            (7, "Advertising illegal products"),
+            (8, "Blatant copyright infringement"),
+            (9, "Other serious reason (please describe in 'explanation')")
         ],
         blank=False
     )
