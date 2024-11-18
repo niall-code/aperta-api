@@ -9,7 +9,6 @@ class ReportSerializer(serializers.ModelSerializer):
     title = serializers.ReadOnlyField(source='reported_post.title')
     post_text = serializers.ReadOnlyField(source='reported_post.post_text')
     image = serializers.SerializerMethodField()
-    reason_text = serializers.ReadOnlyField(source='get_reason_display')
 
     def get_image(self, obj):
         if obj.reported_post.image:
@@ -22,5 +21,5 @@ class ReportSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'owner', 'made_at',
             'post_id', 'title', 'post_text', 'image',
-            'reason', 'reason_text', 'explanation'
+            'reason', 'explanation'
         ]
