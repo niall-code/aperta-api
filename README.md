@@ -318,10 +318,6 @@ I ran `python manage.py startapp approvals` and added 'approvals' to my INSTALLE
 
 I created ApprovalSerializer, ApprovalList, and Approval Detail, and added URL patterns.
 
-### Improve report serializer and views
-
-I significantly altered `reports/views.py` and `serializers.py`, bearing in mind upcoming UI considerations in my React app.
-
 ## Credit
 
 - My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality, including two new models, and other miscellaneous alterations.
