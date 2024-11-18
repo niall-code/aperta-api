@@ -14,6 +14,12 @@ class Report(models.Model):
     reported_post = models.ForeignKey(
         Post, related_name='reports', on_delete=models.CASCADE
     )
+
+    post_id = models.IntegerField(null=True)
+    post_title = models.CharField(max_length=200, null=True)
+    post_text = models.TextField(null=True)
+    post_image = models.URLField(null=True)
+
     reason = models.IntegerField(
         choices=[
             (1, "Graphic violence"),
