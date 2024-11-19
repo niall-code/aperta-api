@@ -14,7 +14,7 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
         if request.method == 'DELETE' and request.user.is_staff:
             return True
 
-        if request.method == 'PUT':
+        if request.method == 'PATCH':
             data = request.data
             allowed_fields = {'reported', 'green_listed'}
             if set(data.keys()).issubset(allowed_fields):

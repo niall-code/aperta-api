@@ -6,7 +6,7 @@ from posts.models import Post
 
 class Report(models.Model):
     """
-    Report model, related to 'owner' and 'reported_post'
+    Report model
     """
     post_id = models.IntegerField(null=True)
     post_title = models.CharField(max_length=200, null=True)

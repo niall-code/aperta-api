@@ -319,7 +319,42 @@ I ran `python manage.py startapp approvals` and added 'approvals' to my INSTALLE
 I created ApprovalSerializer, ApprovalList, and Approval Detail, and added URL patterns.
 
 
-### 
+### Reverted commits, Heroku redeployments, and Supplementary days
+
+#### Reverted commits
+
+I had tried to improve ReportSerializer and ReportList. Then, while trying to submit a reporting form from my React app, I was encountering errors. After trying for a while to address them, I decide to again do a few `git revert` commands. However, I was still having a 404 error afterwards.
+
+#### Heroku redeployments
+
+A conversation with my mentor, Gareth, prompted me to redeploy my API to Heroku. It turned out that the 404 error was mostly because my deployment state was behind my local state and the page I was trying to submit my report to did not yet exist in the production version. I now have a better grasp of the extent of the interconnectedness, having previously been under the mistaken impression that migrating to the database was sufficient; I now more appreciate that my React app, whether development server or production app, interacts specifically with the production API, despite the local and production APIs sharing a database. In hindsight, it seems clear, but I must have gotten muddled for a while.
+
+#### Supplementary days
+
+My mentor also informed me that it is possible for me to submit my project up to a maximum of ten days after the official deadline, with a few caveats. This was somewhat a relief, as I guess I had been presuming that a delayed submission would automatically fail. As I write this sentence, it is twenty minutes before the technical deadline. Rather than hastily submitting the project now in a knowingly non-passable state, I'll continue to work as hard as I can over the next week, which should allow me to achieve a project which I can feel relatively positive about submitting.
+
+If I had started Aperta by essentially cloning the whole of Moments at once, although I could have gotten to my distinctive features earlier, it wouldn't have let me learn Django REST and React half as well as having spent time going through the process again, so this approach should overall have been more beneficial to me, looking beyond the end of the course.
+
+### Alter model fields for Report/Explaining commit history
+
+Even after the 404 was thusly quieted, a HTTP 400 error (Bad Request) took its place. My "alter model fields for Report" commit, together with a couple of commits on the front end, finally resolved this.
+
+I made several changes, but I suspect one of the most important ones was making the Report model's 'post_image' field - originally introduced in the commit titled "add perform_create method" - be of CharField type, rather than ImageField type as it had been before that (although its ImageField phase might have escaped being recorded in my aperta-api GitHub repository's commit history). I made it ImageField because the 'image' field in the Post model was, but I eventually realised that my situation was too different, getting the URL string of an already uploaded image rather than uploadiing a new one, so the poor code was probably confused why I was feeding it letters instead of pixels.
+
+At around this time, I also removed the 'owner' and 'post_image' fields. I never felt the owner field was very useful for the Report model and the introduced 'post_id', 'post_title', 'post_text', and 'post_image' fields (automatically populated via the front end's ReportCreateForm) should supplant the need for the less direct 'reported_post' field. All of this simplifies things for me, enabling me to now have a send-able report form and allowing me to move to the next phases of developing my content moderation feature.
+
+The `perform_create` method itself no longer exists, being redundant after I'd removed the fields it dealt with.
+
+The commits from those few days might contain some changes not explicit in the commit message. I was changing and rechanging many things and some of those commits were initally made primarily to rapidly redeploy to see if I was any closer to success. Now that the crisis has passed, I'll endeavour to return to making commits more consciously.
+
+### Add field-level permission for objects' non-owners
+
+I have decided to revive the briefly discarded idea of utilising 'reported' and 'green_listed' Boolean fields in my Post model. I had been thinking that the permissions file enforcing the need to own an object to edit it would be problematic for other users changing a Post instance's 'reported' field's value to True when they are sending a report. However, I have added a condition that will hopefully avoid that issue, and my removal of Report's 'reported_post' field was done with that in mind. Previously, that field had seemed more necessary for upcoming steps, but I have ideas forming of how I may be able to stop a report post from appearing in the public feed based on its Boolean value instead.
+
+
+For clarity of what state my reports app has ended up now being in, here is a snapshot of the resulting situation:
+
+![current state of reports app](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732020331/report_back_end_h51kpu.png)
 
 ## Credit
 
