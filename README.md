@@ -356,6 +356,10 @@ For clarity of what state my reports app has ended up now being in, here is a sn
 
 ![current state of reports app](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732020331/report_back_end_h51kpu.png)
 
+### Add reported=False filter to PostList queryset
+
+I inserted a filter method into my PostList view's queryset, between the annotate and order_by methods, to exclude posts where the 'reported' field's value has been changed to True from its default of False. It appears that this will be effective, as I ran the development server and can see that post #5, the one I recently gave a True value, is absent from Post List but still exists as a Post Detail.
+
 ## Credit
 
 - My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality, including two new models, and other miscellaneous alterations.
