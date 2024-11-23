@@ -13,11 +13,6 @@ class SuspiciousList(generics.ListCreateAPIView):
     serializer_class = ReportSerializer
     queryset = Report.objects.all()
 
-    # def perform_create(self, serializer):
-    #     serializer.save(owner=self.request.user)
-        # reported_post = Post.objects.get(id=self.obj.post_id)
-        # reported_post.PUT(reported=True)
-
 
 class SuspiciousDetail(generics.RetrieveDestroyAPIView):
     """
