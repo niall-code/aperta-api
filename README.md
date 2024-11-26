@@ -360,11 +360,16 @@ For clarity of what state my reports app has ended up now being in, here is a sn
 
 I inserted a filter method into my PostList view's queryset, between the annotate and order_by methods, to exclude posts where the 'reported' field's value has been changed to True from its default of False. It appears that this will be effective, as I ran the development server and can see that post #5, the one I recently gave a True value, is absent from Post List but still exists as a Post Detail.
 
+### Remove admin.site.register of Approval and Block
+
+My 'blocks' app would have been required if I didn't push back that feature to a theoretical second release. I'll leave it there in case I do add that after the course. My 'approvals' app turned out to not be required for green listing, because I dealt with that role differently, as described elsewhere. However, like 'blocks', it could become useful if I further develop Aperta. For now, I have taken their registration lines out of their admin files, since they do not currently need to be seen in the Django admin panel.
+
+
 ## Credit
 
 - My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality, including two new models, and other miscellaneous alterations.
 
-- My Code Institute mentor, Gareth McGirr, provided general support with clarifying my ideas and priorities for the project.
+- My Code Institute mentor, Gareth McGirr, provided general support with clarifying my ideas and priorities for the project and suggested the convenient inclusion of a 'reported' field in Post.
 
 - A Code Institute tutor, Sarah, helped while writing my Follow model by clarifying a confusion over apparently ambiguous terms.
 
