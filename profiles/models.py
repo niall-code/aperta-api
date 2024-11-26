@@ -5,10 +5,11 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
     '''
-    Creates an instance of the Profile model.
+    Represents a profile. In an instance of Profile,
+    'owner' field is associated with a User instance.
 
-    While no user-specified value for profile_picture, default image by
-    Raphael Silva from Pixabay
+    While no user-specified value for profile_picture,
+    default image by Raphael Silva from Pixabay
     https://pixabay.com/vectors/avatar-icon-placeholder-profile-3814049
 
     '''
@@ -29,8 +30,8 @@ class Profile(models.Model):
 
 def create_profile(sender, instance, created, **kwargs):
     '''
-    When an instance of User is created, an associated instance of
-    Profile is created automatically.
+    When an instance of User is created, an associated
+    instance of Profile is created automatically.
     '''
     if created:
         Profile.objects.create(owner=instance)

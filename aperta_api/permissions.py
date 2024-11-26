@@ -4,7 +4,11 @@ from rest_framework import permissions
 class IsOwnerOrReadOnly(permissions.BasePermission):
     '''
     Checks the permissions of the current user.
-    Ensures a user can only edit an object that they own.
+    Ensures a user can only alter an object that they own,
+
+    except for users needing to patch 'reported' Boolean field
+    and staff member moderators needing to delete content or
+    patch 'green_listed' Boolean field.
     '''
     def has_object_permission(self, request, view, obj):
 

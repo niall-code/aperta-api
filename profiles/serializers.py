@@ -1,4 +1,5 @@
 from rest_framework import serializers
+
 from .models import Profile
 from follows.models import Follow
 
@@ -6,6 +7,11 @@ from follows.models import Follow
 class ProfileSerializer(serializers.ModelSerializer):
     '''
     Serializes instances of the Profile model.
+
+    Adds posts_count, followers_count, and follows_count to fields
+    returned when requesting profile details. Definitions provided
+    by annotate method in querysets of ProfileList and ProfileDetail
+    views.
     '''
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
@@ -16,14 +22,21 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     def get_is_owner(self, obj):
         '''
-        Returns True if the user making the request
-        is the owner of the object.
+        Returns a Boolean value for is_owner.
+        If user making request is profile owner, returns True.
         '''
         request = self.context['request']
         return request.user == obj.owner
 
     def get_follow_id(self, obj):
-        # Will let me see if I've followed a profile
+        '''
+        Returns a value for follow_id.
+        If authenticated user has followed the profile owner,
+        returns id of Follow instance. Else, returns None.
+
+        Helps one user see whether previously followed another.
+        Supports unfollowing by including follow_id in API response.
+        '''
         user = self.context['request'].user
         if user.is_authenticated:
             follow = Follow.objects.filter(

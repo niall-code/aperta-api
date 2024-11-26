@@ -4,6 +4,8 @@ import dj_database_url
 if os.path.exists('env.py'):
     import env
 
+
+# User-uploaded images stored on Cloudinary
 CLOUDINARY_STORAGE = {
     'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL')
 }
@@ -12,23 +14,27 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
+# Postgres database key
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
+# Debug False in production, True in development
 DEBUG = 'DEV' in os.environ
 
+# Development and production URLs can host
 ALLOWED_HOSTS = [
     '8000-niallcode-apertaapi-ztzye9t93js.ws.codeinstitute-ide.net',
     os.environ.get('ALLOWED_HOST'),
 ]
 
+# Development URLs of back and front end CSRF trusted
+# Found necessary during early development
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-niallcode-apertaapi-ztzye9t93js.ws.codeinstitute-ide.net',
     'https://3000-niallcode-aperta-7y6gdwn1now.ws.codeinstitute-ide.net',
 ]
 
-
 INSTALLED_APPS = [
+    # Dependencies
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,6 +53,7 @@ INSTALLED_APPS = [
     'dj_rest_auth.registration',
     'corsheaders',
 
+    # Project-specific apps
     'profiles',
     'posts',
     'likes',
@@ -57,6 +64,7 @@ INSTALLED_APPS = [
     'approvals',
 ]
 
+# Postgres database URL
 DATABASES = {
     'default': dj_database_url.parse(
         os.environ.get("DATABASE_URL")
@@ -104,6 +112,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# For production, front end dev. and prod. URLs CORS allowed
 if 'CLIENT_ORIGIN' in os.environ:
     CORS_ALLOWED_ORIGINS = [
         os.environ.get('CLIENT_ORIGIN'),
@@ -132,7 +141,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'aperta_api.wsgi.application'
 
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -148,16 +156,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
-
 
 STATIC_URL = '/static/'

@@ -9,8 +9,8 @@ from .serializers import ProfileSerializer
 
 class ProfileList(generics.ListAPIView):
     """
-    List all profiles.
-    No create view as profile creation is handled by django signals.
+    Lists all profiles. Provides filterset_fields,
+    required by front end's "Followed" page.
     """
     queryset = Profile.objects.annotate(
         posts_count=Count('owner__post', distinct=True),
@@ -34,7 +34,7 @@ class ProfileList(generics.ListAPIView):
 
 class ProfileDetail(generics.RetrieveUpdateAPIView):
     """
-    Retrieve or update a profile if you're the owner.
+    Retrieves a profile. Updates a user-owned profile.
     """
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Profile.objects.annotate(

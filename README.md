@@ -376,3 +376,5 @@ My 'blocks' app would have been required if I didn't push back that feature to a
 - Another Code Institute tutor, Thomas, provided some guidance regarding what dependency version numbers would be compatible.
 
 - And another Code Institute tutor, Roman, helped to fix my database migrations situation and post detail viewing, as described above under the heading "Git Reverts".
+
+- Default profile picture is [by Raphael Silva from Pixabay](https://pixabay.com/vectors/avatar-icon-placeholder-profile-3814049).
