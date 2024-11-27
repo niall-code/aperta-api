@@ -2,7 +2,10 @@
 
 This Django REST Framework API (Application Programming Interface) is designed to serve as the back end of my full-stack portfolio project, Aperta.
 
-The repository for the front end can be found here: https://github.com/niall-code/aperta
+The deployed DRF API can be found here: https://aperta-api-e412b7c2a211.herokuapp.com
+
+
+(The repository for the front end can be found here: https://github.com/niall-code/aperta )
 
 ## Design, Development, and Deployment Process
 
@@ -204,6 +207,8 @@ I navigated to the "Settings" tab, clicked _Reveal Config Vars_, and added key-v
 
 My environment variables configured, I clicked _Hide Config Vars_, navigated back to the "Deploy" tab, and clicked _Deploy Branch_.
 
+The deployed DRF API can be found here: https://aperta-api-e412b7c2a211.herokuapp.com
+
 ### Add is_staff field to CurrentUserSerializer
 
 I added Django's `is_staff` property as a field of my `CurrentUserSerializer`. This meant that in my React app, I could add a `currentUser?.is_staff` condition to a link in the navbar.
@@ -368,6 +373,9 @@ My 'blocks' app would have been required if I didn't push back that feature to a
 
 From the Django admin panel, logged in as a superuser, I made a new user and ticked for them to have staff status.
 
+### Python validation examples
+
+![Code Institute Python linter](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732716928/python_validation_y7qchp.jpg)
 
 ## Credit
 
