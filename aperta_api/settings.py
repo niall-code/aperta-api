@@ -30,7 +30,7 @@ ALLOWED_HOSTS = [
 # Found necessary during early development
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-niallcode-apertaapi-ztzye9t93js.ws.codeinstitute-ide.net',
-    'https://3000-niallcode-aperta-7y6gdwn1now.ws.codeinstitute-ide.net',
+    'https://3000-niallcode-aperta-rml9kmikpr6.ws.codeinstitute-ide.net',
 ]
 
 INSTALLED_APPS = [

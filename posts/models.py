@@ -4,7 +4,16 @@ from django.contrib.auth.models import User
 
 class Post(models.Model):
     """
-    Creates an instance of Post.
+    Represents a post.
+
+    In a Post instance, 'owner' field associated with a User instance.
+
+    For an image-focused post, the owner may leave 'post_text' blank.
+    For a text-focused post, the owner may leave 'image' blank.
+
+    'reported' defaults to False. When True, post hidden on front end.
+    'green_listed' defaults to False. When True, "Report" button absent
+    on front end.
     """
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)

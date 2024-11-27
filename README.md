@@ -364,6 +364,10 @@ I inserted a filter method into my PostList view's queryset, between the annotat
 
 My 'blocks' app would have been required if I didn't push back that feature to a theoretical second release. I'll leave it there in case I do add that after the course. My 'approvals' app turned out to not be required for green listing, because I dealt with that role differently, as described elsewhere. However, like 'blocks', it could become useful if I further develop Aperta. For now, I have taken their registration lines out of their admin files, since they do not currently need to be seen in the Django admin panel.
 
+### Making a moderator
+
+From the Django admin panel, logged in as a superuser, I made a new user and ticked for them to have staff status.
+
 
 ## Credit
 
