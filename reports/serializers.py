@@ -3,7 +3,9 @@ from reports.models import Report
 
 
 class ReportSerializer(serializers.ModelSerializer):
-
+    '''
+    Serializes the Report model
+    '''
     class Meta:
         model = Report
         fields = [

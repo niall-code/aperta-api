@@ -1,5 +1,6 @@
 from django.contrib.humanize.templatetags.humanize import naturaltime
 from rest_framework import serializers
+
 from .models import Comment
 
 
@@ -18,13 +19,22 @@ class CommentSerializer(serializers.ModelSerializer):
     changed_at = serializers.SerializerMethodField()
 
     def get_is_owner(self, obj):
+        '''
+        Checks whether user owns the comment
+        '''
         request = self.context['request']
         return request.user == obj.owner
 
     def get_made_at(self, obj):
+        '''
+        Converts made_at value to human readable
+        '''
         return naturaltime(obj.made_at)
 
     def get_changed_at(self, obj):
+        '''
+        Converts changed_at value to human readable
+        '''
         return naturaltime(obj.changed_at)
 
     class Meta:
@@ -39,6 +49,6 @@ class CommentSerializer(serializers.ModelSerializer):
 class CommentDetailSerializer(CommentSerializer):
     """
     Serializer for the Comment model used in Detail view
-    Post is a read only field so that we dont have to set it on each update
+    The post is read only field so do not have to set it on each update
     """
     commented_on_post = serializers.ReadOnlyField(source='commented_on_post.id')

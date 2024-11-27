@@ -7,6 +7,9 @@ from .models import Follow
 class FollowSerializer(serializers.ModelSerializer):
     """
     Serializer for the Follow model
+
+    The create method checks that the owner and followed_creator
+    pairing does not already exist
     """
     owner = serializers.ReadOnlyField(source='owner.username')
     followed_name = serializers.ReadOnlyField(source='followed_creator.username')

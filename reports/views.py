@@ -7,7 +7,7 @@ from .serializers import ReportSerializer
 
 class SuspiciousList(generics.ListCreateAPIView):
     """
-    List reports or create a report if logged in.
+    List reports or create a report if permitted.
     """
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = ReportSerializer
@@ -16,7 +16,7 @@ class SuspiciousList(generics.ListCreateAPIView):
 
 class SuspiciousDetail(generics.RetrieveDestroyAPIView):
     """
-    Retrieve a report or delete it by id if staff.
+    Retrieve a report or delete it by id if permitted.
     """
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = ReportSerializer

@@ -5,7 +5,9 @@ from posts.models import Post
 
 class Report(models.Model):
     """
-    Report model
+    Represents a report. Includes a required multi-choice reason
+    and optional explanation string, plus four fields whose values
+    are extracted from the Post instance that the user is reporting.
     """
     post_id = models.IntegerField(null=True)
     post_title = models.CharField(max_length=200, null=True)
